@@ -1,8 +1,9 @@
 # Vim Go Development Environment
 
-## v1.1.0 / 2014-04-xx
+## v1.1.0 / 2014-04-14
 
 - Added key mappings to run benchmarks
+- Fixed key mapping to work only on filetype "go"
 - Switched key mapping to close quicklist to `<LEADER>x`
 
 ## v1.0.0 / 2014-04-13
