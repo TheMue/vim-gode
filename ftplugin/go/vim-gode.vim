@@ -73,6 +73,13 @@ function! g:GoTestFunc()
 	call g:Go(command, 15, 2)
 endfunction
 
+function! g:GoBenchmarkFunc()
+	let line = search("Benchmark[A-Z][a-zA-Z0-9]*", "b")
+	let fname = expand("<cword>")
+	let command = "test -bench " . fname
+	call g:Go(command, 10, 3)
+endfunction
+
 function! g:GoLint()
 	cexpr system("golint " . shellescape(expand('%')))
 	if v:shell_error
@@ -82,25 +89,29 @@ endfunction
 "
 " Commands.
 "
-command! GoPackage :call g:GoPackage()
+command! GoBenchmark :call g:Go("test -bench .", 10, 10)
+command! GoBenchmarkFunc :call g:GoBenchmarkFunc()
 command! GoBuild :call g:Go("build", 15, 0)
+command! GoInstall :call g:Go("install", 15, 0)
+command! GoLint :call g:GoLint()
+command! GoPackage :call g:GoPackage()
 command! GoTest :call g:Go("test", 15, 2)
 command! GoTestFunc :call g:GoTestFunc()
-command! GoInstall :call g:Go("install", 15, 0)
 command! GoVet :call g:Go("vet", 15, 0)
-command! GoLint :call g:GoLint()
 "
 " Key Mappings.
 "
-nmap <Leader>d g<C-]>
-nmap <Leader>D :Godoc<CR>
-nmap <Leader>b :GoBuild<CR>
-nmap <Leader>c :ccl<CR>
-nmap <Leader>T :GoTest<CR>
-nmap <Leader>t :GoTestFunc<CR>
-nmap <Leader>i :GoInstall<CR>
-nmap <Leader>v :GoVet<CR>
-nmap <Leader>l :GoLint<CR>
+nnoremap <Leader>b :GoBuild<CR>
+nnoremap <Leader>d g<C-]>
+nnoremap <Leader>D :Godoc<CR>
+nnoremap <Leader>i :GoInstall<CR>
+nnoremap <Leader>l :GoLint<CR>
+nnoremap <Leader>m :GoBenchmarkFunc<CR>
+nnoremap <Leader>M :GoBenchmark<CR>
+nnoremap <Leader>t :GoTestFunc<CR>
+nnoremap <Leader>T :GoTest<CR>
+nnoremap <Leader>v :GoVet<CR>
+nnoremap <Leader>x :ccl<CR>
 "
 " EOF
 "
