@@ -101,17 +101,18 @@ command! GoVet :call g:Go("vet", 15, 0)
 "
 " Key Mappings.
 "
-nnoremap <Leader>b :GoBuild<CR>
-nnoremap <Leader>d g<C-]>
-nnoremap <Leader>D :Godoc<CR>
-nnoremap <Leader>i :GoInstall<CR>
-nnoremap <Leader>l :GoLint<CR>
-nnoremap <Leader>m :GoBenchmarkFunc<CR>
-nnoremap <Leader>M :GoBenchmark<CR>
-nnoremap <Leader>t :GoTestFunc<CR>
-nnoremap <Leader>T :GoTest<CR>
-nnoremap <Leader>v :GoVet<CR>
-nnoremap <Leader>x :ccl<CR>
+nmap <buffer> <Leader>b :GoBuild<CR>
+nmap <buffer> <Leader>d g<C-]>
+nmap <buffer> <Leader>D :Godoc<CR>
+nmap <buffer> <Leader>i :GoInstall<CR>
+nmap <buffer> <Leader>l :GoLint<CR>
+nmap <buffer> <Leader>m :GoBenchmarkFunc<CR>
+nmap <buffer> <Leader>M :GoBenchmark<CR>
+nmap <buffer> <Leader>t :GoTestFunc<CR>
+nmap <buffer> <Leader>T :GoTest<CR>
+nmap <buffer> <Leader>v :GoVet<CR>
+
+nmap <Leader>x :ccl<CR>
 "
 " EOF
 "
