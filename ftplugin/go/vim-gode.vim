@@ -116,7 +116,7 @@ nnoremap <unique> <buffer> <LocalLeader>t :GoTestFunc<CR>
 nnoremap <unique> <buffer> <LocalLeader>T :GoTest<CR>
 nnoremap <unique> <buffer> <LocalLeader>v :GoVet<CR>
 
-nmap <unique> <LocalLeader>x :ccl<CR>
+nmap <LocalLeader>x :ccl<CR>
 
 let &cpo = s:save_cpo
 "
