@@ -3,10 +3,13 @@
 "
 " Copyright (c) 2014, Frank Mueller / Tideland / Oldenburg / Germany
 "
-if exists("g:vim_gode_loaded")
+if exists("b:vim_gode_loaded")
     finish
 endif
-let g:vim_gode_loaded = 1
+let b:vim_gode_loaded = 1
+
+let s:save_cpo = &cpo
+set cpo&vim
 "
 " Functions.
 "
@@ -57,6 +60,7 @@ function! g:Go(command, errsize, oksize)
 	let cwd = getcwd()
 	let pd = fnamemodify(resolve(@%), ':p:h')
 	cd `=pd`
+	" echo "Running 'go " . a:command . "' ..."
 	cexpr system("go " . a:command)
 	if v:shell_error
 		call s:COpenHeight(a:errsize)
@@ -101,18 +105,20 @@ command! GoVet :call g:Go("vet", 15, 0)
 "
 " Key Mappings.
 "
-nmap <buffer> <Leader>b :GoBuild<CR>
-nmap <buffer> <Leader>d g<C-]>
-nmap <buffer> <Leader>D :Godoc<CR>
-nmap <buffer> <Leader>i :GoInstall<CR>
-nmap <buffer> <Leader>l :GoLint<CR>
-nmap <buffer> <Leader>m :GoBenchmarkFunc<CR>
-nmap <buffer> <Leader>M :GoBenchmark<CR>
-nmap <buffer> <Leader>t :GoTestFunc<CR>
-nmap <buffer> <Leader>T :GoTest<CR>
-nmap <buffer> <Leader>v :GoVet<CR>
+nnoremap <unique> <buffer> <LocalLeader>b :GoBuild<CR>
+nnoremap <unique> <buffer> <LocalLeader>d g<C-]>
+nnoremap <unique> <buffer> <LocalLeader>D :Godoc<CR>
+nnoremap <unique> <buffer> <LocalLeader>i :GoInstall<CR>
+nnoremap <unique> <buffer> <LocalLeader>l :GoLint<CR>
+nnoremap <unique> <buffer> <LocalLeader>m :GoBenchmarkFunc<CR>
+nnoremap <unique> <buffer> <LocalLeader>M :GoBenchmark<CR>
+nnoremap <unique> <buffer> <LocalLeader>t :GoTestFunc<CR>
+nnoremap <unique> <buffer> <LocalLeader>T :GoTest<CR>
+nnoremap <unique> <buffer> <LocalLeader>v :GoVet<CR>
 
-nmap <Leader>x :ccl<CR>
+nmap <unique> <LocalLeader>x :ccl<CR>
+
+let &cpo = s:save_cpo
 "
 " EOF
 "
