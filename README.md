@@ -7,18 +7,18 @@ functions and according key mappings when editing a Go file.
 
 In alphabetical order:
 
-- `<LEADER>b` builds the package of the current file with `go build`.
-- `<LEADER>d` jumps to the definition of the identifier under the cursor, based on
+- `<LocalLeader>b` builds the package of the current file with `go build`.
+- `<LocalLeader>d` jumps to the definition of the identifier under the cursor, based on
   the *ctags*. In case of multiple definitions all are shown in a menu.
-- `<LEADER>D` shows the Go documentation of the identifier under the cursor.
-- `<LEADER>i` installs the package of the current file with `go install`.
-- `<LEADER>m` takes the benchmark function surrounding the cursor and runs it.
-- `<LEADER>M` runs all benchmarks.
-- `<LEADER>l` runs `golint` on the current file.
-- `<LEADER>t` takes the test function surrounding the cursor and tests it.
-- `<LEADER>T` runs all tests.
-- `<LEADER>v` checks the current packages with `go vet`.
-- `<LEADER>x` closes the quicklist window, e.g. after running build or test.
+- `<LocalLeader>D` shows the Go documentation of the identifier under the cursor.
+- `<LocalLeader>i` installs the package of the current file with `go install`.
+- `<LocalLeader>m` takes the benchmark function surrounding the cursor and runs it.
+- `<LocalLeader>M` runs all benchmarks.
+- `<LocalLeader>l` runs `golint` on the current file.
+- `<LocalLeader>t` takes the test function surrounding the cursor and tests it.
+- `<LocalLeader>T` runs all tests.
+- `<LocalLeader>v` checks the current packages with `go vet`.
+- `<LocalLeader>x` closes the quicklist window, e.g. after running build or test.
 
 The opened quicklist window tries to have the best size.
 
