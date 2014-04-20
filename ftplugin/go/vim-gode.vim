@@ -56,7 +56,7 @@ function! g:GoPackage()
 	return pkg
 endfunction
 
-function! g:Go(command, errsize, oksize)
+function! g:GoCommand(command, errsize, oksize)
 	let cwd = getcwd()
 	let pd = fnamemodify(resolve(@%), ':p:h')
 	cd `=pd`
@@ -74,14 +74,14 @@ function! g:GoTestFunc()
 	let line = search("Test[A-Z][a-zA-Z0-9]*", "b")
 	let fname = expand("<cword>")
 	let command = "test -test.run " . fname
-	call g:Go(command, 15, 2)
+	call g:GoCommand(command, 15, 2)
 endfunction
 
 function! g:GoBenchmarkFunc()
 	let line = search("Benchmark[A-Z][a-zA-Z0-9]*", "b")
 	let fname = expand("<cword>")
 	let command = "test -bench " . fname
-	call g:Go(command, 10, 3)
+	call g:GoCommand(command, 10, 3)
 endfunction
 
 function! g:GoLint()
@@ -95,13 +95,13 @@ endfunction
 "
 command! GoBenchmark :call g:Go("test -bench .", 10, 10)
 command! GoBenchmarkFunc :call g:GoBenchmarkFunc()
-command! GoBuild :call g:Go("build", 15, 0)
-command! GoInstall :call g:Go("install", 15, 0)
+command! GoBuild :call g:GoCommand("build", 15, 0)
+command! GoInstall :call g:GoCommand("install", 15, 0)
 command! GoLint :call g:GoLint()
 command! GoPackage :call g:GoPackage()
-command! GoTest :call g:Go("test", 15, 2)
+command! GoTest :call g:GoCommand("test", 15, 2)
 command! GoTestFunc :call g:GoTestFunc()
-command! GoVet :call g:Go("vet", 15, 0)
+command! GoVet :call g:GoCommand("vet", 15, 0)
 "
 " Key Mappings.
 "
