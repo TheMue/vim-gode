@@ -60,7 +60,6 @@ function! g:GoCommand(command, errsize, oksize)
 	let cwd = getcwd()
 	let pd = fnamemodify(resolve(@%), ':p:h')
 	cd `=pd`
-	" echo "Running 'go " . a:command . "' ..."
 	cexpr system("go " . a:command)
 	if v:shell_error
 		call s:COpenHeight(a:errsize)
