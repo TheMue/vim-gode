@@ -60,7 +60,6 @@ function! g:GoCommand(command, errsize, oksize)
 	let cwd = getcwd()
 	let pd = fnamemodify(resolve(@%), ':p:h')
 	cd `=pd`
-	" echo "Running 'go " . a:command . "' ..."
 	cexpr system("go " . a:command)
 	if v:shell_error
 		call s:COpenHeight(a:errsize)
@@ -71,17 +70,19 @@ function! g:GoCommand(command, errsize, oksize)
 endfunction
 
 function! g:GoTestFunc()
-	let line = search("Test[A-Z][a-zA-Z0-9]*", "b")
+	let line = search("func Test[A-Z][a-zA-Z0-9]*", "b")
+	normal w
 	let fname = expand("<cword>")
 	let command = "test -test.run " . fname
-	call g:GoCommand(command, 15, 2)
+	call g:GoCommand(command, 15, 5)
 endfunction
 
 function! g:GoBenchmarkFunc()
-	let line = search("Benchmark[A-Z][a-zA-Z0-9]*", "b")
+	let line = search("func Benchmark[A-Z][a-zA-Z0-9]*", "b")
+	normal w
 	let fname = expand("<cword>")
 	let command = "test -bench " . fname
-	call g:GoCommand(command, 10, 3)
+	call g:GoCommand(command, 15, 5)
 endfunction
 
 function! g:GoLint()
@@ -93,13 +94,13 @@ endfunction
 "
 " Commands.
 "
-command! GoBenchmark :call g:Go("test -bench .", 10, 10)
+command! GoBenchmark :call g:GoCommand("test -bench .", 15, 5)
 command! GoBenchmarkFunc :call g:GoBenchmarkFunc()
 command! GoBuild :call g:GoCommand("build", 15, 0)
 command! GoInstall :call g:GoCommand("install", 15, 0)
 command! GoLint :call g:GoLint()
 command! GoPackage :call g:GoPackage()
-command! GoTest :call g:GoCommand("test", 15, 2)
+command! GoTest :call g:GoCommand("test", 15, 5)
 command! GoTestFunc :call g:GoTestFunc()
 command! GoVet :call g:GoCommand("vet", 15, 0)
 "
@@ -108,6 +109,7 @@ command! GoVet :call g:GoCommand("vet", 15, 0)
 nnoremap <unique> <buffer> <LocalLeader>b :GoBuild<CR>
 nnoremap <unique> <buffer> <LocalLeader>d g<C-]>
 nnoremap <unique> <buffer> <LocalLeader>D :Godoc<CR>
+nnoremap <unique> <buffer> <LocalLeader>f :Fmt<CR>
 nnoremap <unique> <buffer> <LocalLeader>i :GoInstall<CR>
 nnoremap <unique> <buffer> <LocalLeader>l :GoLint<CR>
 nnoremap <unique> <buffer> <LocalLeader>m :GoBenchmarkFunc<CR>
@@ -116,6 +118,13 @@ nnoremap <unique> <buffer> <LocalLeader>t :GoTestFunc<CR>
 nnoremap <unique> <buffer> <LocalLeader>T :GoTest<CR>
 nnoremap <unique> <buffer> <LocalLeader>v :GoVet<CR>
 
+nmap <F10> :execute "vimgrep /" . expand("<cword>") . "/j **/*.go"<Bar>cw<CR> 
+nmap <F11> :cprev<CR>
+nmap <S-F11> :cpfile<CR>
+nmap <C-F11> :colder<CR>
+nmap <F12> :cnext<CR>
+nmap <S-F12> :cnfile<CR>
+nmap <C-F12> :cnewer<CR>
 nmap <LocalLeader>x :ccl<CR>
 
 let &cpo = s:save_cpo
