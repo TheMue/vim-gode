@@ -107,7 +107,6 @@ command! GoVet :call g:GoCommand("vet", 15, 0)
 " Key Mappings.
 "
 nnoremap <unique> <buffer> <LocalLeader>b :GoBuild<CR>
-nnoremap <unique> <buffer> <LocalLeader>d g<C-]>
 nnoremap <unique> <buffer> <LocalLeader>D :Godoc<CR>
 nnoremap <unique> <buffer> <LocalLeader>f :Fmt<CR>
 nnoremap <unique> <buffer> <LocalLeader>i :GoInstall<CR>
@@ -119,13 +118,6 @@ nnoremap <unique> <buffer> <LocalLeader>T :GoTest<CR>
 nnoremap <unique> <buffer> <LocalLeader>v :GoVet<CR>
 
 nmap <F10> :execute "vimgrep /" . expand("<cword>") . "/j **/*.go"<Bar>cw<CR> 
-nmap <F11> :cprev<CR>
-nmap <S-F11> :cpfile<CR>
-nmap <C-F11> :colder<CR>
-nmap <F12> :cnext<CR>
-nmap <S-F12> :cnfile<CR>
-nmap <C-F12> :cnewer<CR>
-nmap <LocalLeader>x :ccl<CR>
 
 let &cpo = s:save_cpo
 "
