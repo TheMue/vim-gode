@@ -11,7 +11,7 @@ In alphabetical order:
 - `<localleader>f` formats the Go code
 - `<localleader>g` shows all occurences of the word under the cursor in the package
 - `<localleader>i` installs the package of the current file
-- `<localleader>l` runs `golint` on the current file.
+- `<localleader>l` runs `golint` on the current file
 - `<localleader>m` takes the benchmark function surrounding the cursor and runs it
 - `<localleader>M` runs all benchmarks of the package
 - `<localleader>s` shows the file structure using the Tagbar plugin
