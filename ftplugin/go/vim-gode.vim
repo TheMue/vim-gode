@@ -6,17 +6,35 @@
 if exists("b:vim_gode_loaded")
     finish
 endif
+
 let b:vim_gode_loaded = 1
-let maplocalleader = "#"
 let s:save_cpo = &cpo
+
 set cpo&vim
-set expandtab!
+set formatoptions-=t
+set comments=s1:/*,mb:*,ex:*/,://
+set commentstring=//\ %s
+set noexpandtab
+set tabstop=8
+set shiftwidth=8
+set noexpandtab
+set autoread
+let g:ctrlp_buftag_types = {'go' : '--language-force=go --golang-types=ft'}
+
+set errorformat=%-G#\ %.%#
+set errorformat+=%-G%.%#panic:\ %m
+set errorformat+=%Ecan\'t\ load\ package:\ %m
+set errorformat+=%A%f:%l:%c:\ %m
+set errorformat+=%A%f:%l:\ %m
+set errorformat+=%C%*\\s%m
+
+compiler go
 "
 " Functions.
 "
-function! s:COpenHeight(height)
+function! s:quickfix(height)
     if a:height > 0
-        exec "copen " . a:height
+        execute "copen " . a:height
     endif
 endfunction
 
@@ -63,9 +81,9 @@ function! g:GoCommand(command, errsize, oksize)
     cd `=pd`
     cexpr system("go " . a:command)
     if v:shell_error
-        call s:COpenHeight(a:errsize)
+        call s:quickfix(a:errsize)
     else
-        call s:COpenHeight(a:oksize)
+        call s:quickfix(a:oksize)
     endif
     cd `=cwd`
 endfunction
@@ -75,7 +93,7 @@ function! g:GoTestFunc()
     normal w
     let fname = expand("<cword>")
     let command = "test -test.run " . fname
-    call g:GoCommand(command, 15, 5)
+    call g:GoCommand(command, 15, 15)
 endfunction
 
 function! g:GoBenchmarkFunc()
@@ -87,20 +105,23 @@ function! g:GoBenchmarkFunc()
 endfunction
 
 function! g:GoFmt()
-    set noconfirm
-    cexpr system("go fmt ./...")
+    cexpr system("go fmt " . shellescape(expand('%')))
     bufdo e!
-    set confirm
     if v:shell_error
-        copen 15
+        call s:quickfix(15)
     endif
 endfunction
 
 function! g:GoLint()
     cexpr system("golint " . shellescape(expand('%')))
     if v:shell_error
-        copen 15
+        call s:quickfix(15)
     endif
+endfunction
+
+function! g:GoGrep()
+    execute "vimgrep /" . expand("<cword>") . "/j **/*.go"
+    execute "cw"
 endfunction
 "
 " Tags.
@@ -130,7 +151,7 @@ function! s:SetTagbar()
         \ 'ctype' : 't',
         \ 'ntype' : 'n'
         \ },
-        \ 'ctagsbin'  : '~/Code/Tideland/Go/bin/gotags',
+        \ 'ctagsbin'  : 'gotags',
         \ 'ctagsargs' : '-sort -silent'
         \ }
 endfunction
@@ -139,30 +160,33 @@ call s:SetTagbar()
 "
 " Commands.
 "
-command! GoBenchmark     :call g:GoCommand("test -bench .", 15, 5)
+command! GoBenchmark     :call g:GoCommand("test -bench .", 15, 10)
 command! GoBenchmarkFunc :call g:GoBenchmarkFunc()
 command! GoBuild         :call g:GoCommand("build", 15, 0)
 command! GoFmt           :call g:GoFmt()
 command! GoInstall       :call g:GoCommand("install", 15, 0)
 command! GoLint          :call g:GoLint()
 command! GoPackage       :call g:GoPackage()
-command! GoTest          :call g:GoCommand("test", 15, 5)
+command! GoTest          :call g:GoCommand("test", 15, 15)
 command! GoTestFunc      :call g:GoTestFunc()
 command! GoVet           :call g:GoCommand("vet", 15, 0)
+command! GoGrep          :call g:GoGrep()
 "
 " Key Mappings.
 "
 nnoremap <unique> <buffer> <localleader>b :GoBuild<CR>
 nnoremap <unique> <buffer> <localleader>D :Godoc<CR>
 nnoremap <unique> <buffer> <localleader>f :GoFmt<CR>
+nnoremap <unique> <buffer> <localleader>g :GoGrep<CR>
 nnoremap <unique> <buffer> <localleader>i :GoInstall<CR>
 nnoremap <unique> <buffer> <localleader>l :GoLint<CR>
 nnoremap <unique> <buffer> <localleader>m :GoBenchmarkFunc<CR>
 nnoremap <unique> <buffer> <localleader>M :GoBenchmark<CR>
+nnoremap <unique> <buffer> <localleader>s :TagbarToggle<CR>
 nnoremap <unique> <buffer> <localleader>t :GoTestFunc<CR>
 nnoremap <unique> <buffer> <localleader>T :GoTest<CR>
 nnoremap <unique> <buffer> <localleader>v :GoVet<CR>
-nnoremap <unique> <buffer> <localleader>G :execute "vimgrep /" . expand("<cword>") . "/j **/*.go"<Bar>cw<CR>
+nnoremap <unique> <buffer> <localleader>x :cclose<CR>
 
 let &cpo = s:save_cpo
 "
