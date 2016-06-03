@@ -104,6 +104,11 @@ function! g:GoBenchmarkFunc()
     call g:GoCommand(command, 15, 5)
 endfunction
 
+function! g:GoTestCoverage()
+    cexpr system("go test -coverprofile=coverage.out && go tool cover -func=coverage.out")
+    call s:quickfix(15)
+endfunction
+
 function! g:GoFmt()
     cexpr system("go fmt " . shellescape(expand('%')))
     bufdo e!
@@ -169,6 +174,7 @@ command! GoLint          :call g:GoLint()
 command! GoPackage       :call g:GoPackage()
 command! GoTest          :call g:GoCommand("test", 15, 15)
 command! GoTestFunc      :call g:GoTestFunc()
+command! GoTestCoverage  :call g:GoTestCoverage()
 command! GoVet           :call g:GoCommand("vet", 15, 0)
 command! GoGrep          :call g:GoGrep()
 "
@@ -185,6 +191,7 @@ nnoremap <unique> <buffer> <localleader>M :GoBenchmark<CR>
 nnoremap <unique> <buffer> <localleader>s :TagbarToggle<CR>
 nnoremap <unique> <buffer> <localleader>t :GoTestFunc<CR>
 nnoremap <unique> <buffer> <localleader>T :GoTest<CR>
+nnoremap <unique> <buffer> <localleader>c :GoTestCoverage<CR>
 nnoremap <unique> <buffer> <localleader>v :GoVet<CR>
 nnoremap <unique> <buffer> <localleader>x :cclose<CR>
 

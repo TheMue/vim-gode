@@ -17,6 +17,7 @@ In alphabetical order:
 - `<localleader>s` shows the file structure using the Tagbar plugin
 - `<localleader>t` takes the test function surrounding the cursor and tests it
 - `<localleader>T` runs all tests of the package
+- `<localleader>c` runs a coverage test of the package
 - `<localleader>v` examines Go source code and reports suspicious constructs
 - `<localleader>x` closes the quicklist window, e.g. after running build or test
 
