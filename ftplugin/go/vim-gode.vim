@@ -173,6 +173,7 @@ command! GoInstall       :call g:GoCommand("install", 15, 0)
 command! GoLint          :call g:GoLint()
 command! GoPackage       :call g:GoPackage()
 command! GoTest          :call g:GoCommand("test", 15, 15)
+command! GoBuildTest     :call g:GoCommand("test -c -i", 15, 15)
 command! GoTestFunc      :call g:GoTestFunc()
 command! GoTestCoverage  :call g:GoTestCoverage()
 command! GoVet           :call g:GoCommand("vet", 15, 0)
@@ -191,6 +192,7 @@ nnoremap <unique> <buffer> <localleader>M :GoBenchmark<CR>
 nnoremap <unique> <buffer> <localleader>s :TagbarToggle<CR>
 nnoremap <unique> <buffer> <localleader>t :GoTestFunc<CR>
 nnoremap <unique> <buffer> <localleader>T :GoTest<CR>
+nnoremap <unique> <buffer> <localleader>B :GoBuildTest<CR>
 nnoremap <unique> <buffer> <localleader>c :GoTestCoverage<CR>
 nnoremap <unique> <buffer> <localleader>v :GoVet<CR>
 nnoremap <unique> <buffer> <localleader>x :cclose<CR>

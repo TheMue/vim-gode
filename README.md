@@ -4,22 +4,21 @@ The *Vim Go Development Environment* is a small and lightweighted extension to t
 original Vim Go plugins. So it is nothing very special, but provides some helpful
 functions and according key mappings when editing a Go file.
 
-In alphabetical order:
+The commands are
 
-- `<localleader>b` builds the package of the current file
-- `<localleader>D` shows the Go documentation of the identifier under the cursor
-- `<localleader>f` formats the Go code
-- `<localleader>g` shows all occurences of the word under the cursor in the package
-- `<localleader>i` installs the package of the current file
-- `<localleader>l` runs `golint` on the current file
-- `<localleader>m` takes the benchmark function surrounding the cursor and runs it
-- `<localleader>M` runs all benchmarks of the package
-- `<localleader>s` shows the file structure using the Tagbar plugin
-- `<localleader>t` takes the test function surrounding the cursor and tests it
-- `<localleader>T` runs all tests of the package
-- `<localleader>c` runs a coverage test of the package
-- `<localleader>v` examines Go source code and reports suspicious constructs
-- `<localleader>x` closes the quicklist window, e.g. after running build or test
+- `GoBuid` / `<localleader>b` builds the package of the current file
+- `GoDoc` / `<localleader>D` shows the Go documentation of the identifier under the cursor
+- `GoFmt` / `<localleader>f` formats the Go code
+- `GoGrep` / `<localleader>g` shows all occurences of the word under the cursor in the package
+- `GoInstall` / `<localleader>i` installs the package of the current file
+- `GoLint` / `<localleader>l` runs `golint` on the current file
+- `GoBenchmarkFunc` / `<localleader>m` takes the benchmark function surrounding the cursor and runs it
+- `GoBenchmark` / `<localleader>M` runs all benchmarks of the package
+- `GoTestFunc` / `<localleader>t` takes the test function surrounding the cursor and tests it
+- `GoTest` / `<localleader>T` runs all tests of the package
+- `GoBuildTest` / `<localleader>B` runs a build of the tests with executing them
+- `GoTestCoverage` / `<localleader>c` runs a coverage test of the package
+- `GoVet` / `<localleader>v` examines Go source code and reports suspicious constructs
 
 The opened quicklist window tries to have the best size.
 
