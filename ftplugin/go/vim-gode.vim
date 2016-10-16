@@ -15,8 +15,8 @@ set formatoptions-=t
 set comments=s1:/*,mb:*,ex:*/,://
 set commentstring=//\ %s
 set noexpandtab
-set tabstop=8
-set shiftwidth=8
+set tabstop=4
+set shiftwidth=4
 set noexpandtab
 set autoread
 let g:ctrlp_buftag_types = {'go' : '--language-force=go --golang-types=ft'}
@@ -30,7 +30,7 @@ set errorformat+=%C%*\\s%m
 
 compiler go
 "
-" Functions.
+" Functions
 "
 function! s:quickfix(height)
     if a:height > 0
