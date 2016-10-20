@@ -6,7 +6,7 @@ functions and according key mappings when editing a Go file.
 
 The commands are
 
-- `GoBuid` / `<localleader>b` builds the package of the current file
+- `GoBuild` / `<localleader>b` builds the package of the current file
 - `GoDoc` / `<localleader>D` shows the Go documentation of the identifier under the cursor
 - `GoFmt` / `<localleader>f` formats the Go code
 - `GoGrep` / `<localleader>g` shows all occurences of the word under the cursor in the package
@@ -16,7 +16,7 @@ The commands are
 - `GoBenchmark` / `<localleader>M` runs all benchmarks of the package
 - `GoTestFunc` / `<localleader>t` takes the test function surrounding the cursor and tests it
 - `GoTest` / `<localleader>T` runs all tests of the package
-- `GoBuildTest` / `<localleader>B` runs a build of the tests with executing them
+- `GoBuildTest` / `<localleader>B` runs a build of the tests without executing them
 - `GoTestCoverage` / `<localleader>c` runs a coverage test of the package
 - `GoVet` / `<localleader>v` examines Go source code and reports suspicious constructs
 
@@ -33,6 +33,12 @@ Simply call
     git clone git://github.com/TheMue/vim-gode
 
 After a restart of Vim you can use *vim-gode*.
+
+Alternatively use the cool [vim-plug](https://github.com/junegunn/vim-plug) and add
+
+    Plug 'themue/vim-gode'
+
+to your `.vimrc`.
 
 ## License
 
