@@ -124,8 +124,17 @@ function! g:GoLint()
     endif
 endfunction
 
+function! g:GoDoc()
+    let currentiskeyword = &iskeyword
+    setlocal iskeyword+=.
+    let symbol = expand("<cword>")
+    let &iskeyword = currentiskeyword
+    let command = "doc -u " . symbol
+    call g:GoCommand(command, 5, 15)
+endfunction
+
 function! g:GoGrep()
-    execute "vimgrep /" . expand("<cword>") . "/j **/*.go"
+    execute "vimgrep /" . expand("<cWORD>") . "/j **/*.go"
     execute "cw"
 endfunction
 "
@@ -168,6 +177,7 @@ call s:SetTagbar()
 command! GoBenchmark     :call g:GoCommand("test -bench .", 15, 10)
 command! GoBenchmarkFunc :call g:GoBenchmarkFunc()
 command! GoBuild         :call g:GoCommand("build", 15, 0)
+command! GoDoc           :call g:GoDoc()
 command! GoFmt           :call g:GoFmt()
 command! GoInstall       :call g:GoCommand("install", 15, 0)
 command! GoLint          :call g:GoLint()
@@ -182,7 +192,7 @@ command! GoGrep          :call g:GoGrep()
 " Key Mappings.
 "
 nnoremap <unique> <buffer> <localleader>b :GoBuild<CR>
-nnoremap <unique> <buffer> <localleader>D :Godoc<CR>
+nnoremap <unique> <buffer> <localleader>D :GoDoc<CR>
 nnoremap <unique> <buffer> <localleader>f :GoFmt<CR>
 nnoremap <unique> <buffer> <localleader>g :GoGrep<CR>
 nnoremap <unique> <buffer> <localleader>i :GoInstall<CR>
