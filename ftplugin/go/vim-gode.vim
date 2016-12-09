@@ -179,6 +179,7 @@ command! GoBenchmarkFunc :call g:GoBenchmarkFunc()
 command! GoBuild         :call g:GoCommand("build", 15, 0)
 command! GoDoc           :call g:GoDoc()
 command! GoFmt           :call g:GoFmt()
+command! GoGetUpdate     :call g:GoCommand("get -u all", 15, 5)
 command! GoInstall       :call g:GoCommand("install", 15, 0)
 command! GoLint          :call g:GoLint()
 command! GoPackage       :call g:GoPackage()
@@ -195,6 +196,7 @@ nnoremap <unique> <buffer> <localleader>b :GoBuild<CR>
 nnoremap <unique> <buffer> <localleader>D :GoDoc<CR>
 nnoremap <unique> <buffer> <localleader>f :GoFmt<CR>
 nnoremap <unique> <buffer> <localleader>g :GoGrep<CR>
+nnoremap <unique> <buffer> <localleader>G :GoGetUpdate<CR>
 nnoremap <unique> <buffer> <localleader>i :GoInstall<CR>
 nnoremap <unique> <buffer> <localleader>l :GoLint<CR>
 nnoremap <unique> <buffer> <localleader>m :GoBenchmarkFunc<CR>
