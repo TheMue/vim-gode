@@ -7,6 +7,7 @@ functions and according key mappings when editing a Go file.
 The commands are
 
 - `GoBuild` / `<localleader>b` builds the package of the current file
+- `GoRun` / `<localleader>r` builds and runs the current file
 - `GoDoc` / `<localleader>D` shows the Go documentation of the identifier under the cursor
 - `GoFmt` / `<localleader>f` formats the Go code
 - `GoGrep` / `<localleader>g` shows all occurences of the word under the cursor in the package

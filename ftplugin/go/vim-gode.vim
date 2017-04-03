@@ -1,7 +1,7 @@
 "
 " Vim Go Development Environment
 "
-" Copyright (c) 2014-2016, Frank Mueller / Oldenburg / Germany
+" Copyright (c) 2014-2017, Frank Mueller / Oldenburg / Germany
 "
 if exists("b:vim_gode_loaded")
     finish
@@ -27,6 +27,8 @@ set errorformat+=%Ecan\'t\ load\ package:\ %m
 set errorformat+=%A%f:%l:%c:\ %m
 set errorformat+=%A%f:%l:\ %m
 set errorformat+=%C%*\\s%m
+
+au BufWritePost *.go !gofmt -w %
 
 compiler go
 "
@@ -177,6 +179,7 @@ call s:SetTagbar()
 command! GoBenchmark     :call g:GoCommand("test -bench .", 15, 10)
 command! GoBenchmarkFunc :call g:GoBenchmarkFunc()
 command! GoBuild         :call g:GoCommand("build", 15, 0)
+command! GoRun           :call g:GoCommand("run", 15, 0)
 command! GoDoc           :call g:GoDoc()
 command! GoFmt           :call g:GoFmt()
 command! GoGetUpdate     :call g:GoCommand("get -u all", 15, 5)
@@ -193,6 +196,7 @@ command! GoGrep          :call g:GoGrep()
 " Key Mappings.
 "
 nnoremap <unique> <buffer> <localleader>b :GoBuild<CR>
+nnoremap <unique> <buffer> <localleader>r :GoRun<CR>
 nnoremap <unique> <buffer> <localleader>D :GoDoc<CR>
 nnoremap <unique> <buffer> <localleader>f :GoFmt<CR>
 nnoremap <unique> <buffer> <localleader>g :GoGrep<CR>
