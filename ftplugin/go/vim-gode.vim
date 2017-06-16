@@ -28,7 +28,7 @@ set errorformat+=%A%f:%l:%c:\ %m
 set errorformat+=%A%f:%l:\ %m
 set errorformat+=%C%*\\s%m
 
-au BufWritePost *.go !gofmt -w %
+autocmd! BufWritePost *.go !gofmt -w %
 
 compiler go
 "
