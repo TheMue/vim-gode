@@ -1,7 +1,7 @@
 "
 " Vim Go Development Environment
 "
-" Copyright (c) 2014-2017, Frank Mueller / Oldenburg / Germany
+" Copyright (c) 2014-2019, Frank Mueller / Oldenburg / Germany
 "
 if exists("b:vim_gode_loaded")
     finish
@@ -195,23 +195,23 @@ command! GoGrep          :call g:GoGrep()
 "
 " Key Mappings.
 "
-nnoremap <unique> <buffer> <localleader>b :GoBuild<CR>
-nnoremap <unique> <buffer> <localleader>r :GoRun<CR>
-nnoremap <unique> <buffer> <localleader>D :GoDoc<CR>
-nnoremap <unique> <buffer> <localleader>f :GoFmt<CR>
-nnoremap <unique> <buffer> <localleader>g :GoGrep<CR>
-nnoremap <unique> <buffer> <localleader>G :GoGetUpdate<CR>
-nnoremap <unique> <buffer> <localleader>i :GoInstall<CR>
-nnoremap <unique> <buffer> <localleader>l :GoLint<CR>
-nnoremap <unique> <buffer> <localleader>m :GoBenchmarkFunc<CR>
-nnoremap <unique> <buffer> <localleader>M :GoBenchmark<CR>
-nnoremap <unique> <buffer> <localleader>s :TagbarToggle<CR>
-nnoremap <unique> <buffer> <localleader>t :GoTestFunc<CR>
-nnoremap <unique> <buffer> <localleader>T :GoTest<CR>
-nnoremap <unique> <buffer> <localleader>B :GoBuildTest<CR>
-nnoremap <unique> <buffer> <localleader>c :GoTestCoverage<CR>
-nnoremap <unique> <buffer> <localleader>v :GoVet<CR>
-nnoremap <unique> <buffer> <localleader>x :cclose<CR>
+nnoremap <unique> <buffer> <C-G>b :GoBuild<CR>
+nnoremap <unique> <buffer> <C-G>r :GoRun<CR>
+nnoremap <unique> <buffer> <C-G>D :GoDoc<CR>
+nnoremap <unique> <buffer> <C-G>f :GoFmt<CR>
+nnoremap <unique> <buffer> <C-G>g :GoGrep<CR>
+nnoremap <unique> <buffer> <C-G>G :GoGetUpdate<CR>
+nnoremap <unique> <buffer> <C-G>i :GoInstall<CR>
+nnoremap <unique> <buffer> <C-G>l :GoLint<CR>
+nnoremap <unique> <buffer> <C-G>m :GoBenchmarkFunc<CR>
+nnoremap <unique> <buffer> <C-G>M :GoBenchmark<CR>
+nnoremap <unique> <buffer> <C-G>s :TagbarToggle<CR>
+nnoremap <unique> <buffer> <C-G>t :GoTestFunc<CR>
+nnoremap <unique> <buffer> <C-G>T :GoTest<CR>
+nnoremap <unique> <buffer> <C-G>B :GoBuildTest<CR>
+nnoremap <unique> <buffer> <C-G>c :GoTestCoverage<CR>
+nnoremap <unique> <buffer> <C-G>v :GoVet<CR>
+nnoremap <unique> <buffer> <C-G>x :cclose<CR>
 
 let &cpo = s:save_cpo
 "
